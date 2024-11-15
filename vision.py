@@ -14,7 +14,7 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # Function to load OpenAI model and get respones
 def get_gemini_response(input, image):
-    model = genai.GenerativeModel('gemini-pro-vision')
+    model = genai.GenerativeModel('gemini-1.5-flash')
     if input != "":
         response = model.generate_content([input, image])
     else:
@@ -23,7 +23,7 @@ def get_gemini_response(input, image):
 
 # Initialize our Streamlit app
 st.set_page_config(
-    page_title="Gemini Mode Sappy Image Recognition",
+    page_title="Image Recognition",
     page_icon=":camera:",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -35,7 +35,7 @@ with open("style.css") as f:
 
 # Add a header with custom styles
 st.markdown(
-    "<div style='text-align: center; background-color: #4c9dff; padding: 20px; border-radius: 10px;'><h1 style='color: white; margin: 0;'>Sap's Image Application</h1></div>",
+    "<div style='text-align: center; background-color: #4c9dff; padding: 20px; border-radius: 10px;'><h1 style='color: white; margin: 0;'>Image Recognition Application</h1></div>",
     unsafe_allow_html=True
 )
 
@@ -54,7 +54,7 @@ with col2:
     image = None
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
-        st.image(image, caption="Uploaded Image.", use_column_width=True)
+        st.image(image, caption="Uploaded Image.", use_container_width=True)
 
 # Submit button
 submit = st.button("Tell me about the image", use_container_width=True)
